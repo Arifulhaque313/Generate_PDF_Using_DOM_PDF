@@ -17,7 +17,7 @@ use Inertia\Inertia;
 */
 
 Route::get('/', function () {
-    return Inertia::render('Auth/Login', [
+    return Inertia::render('Welcome', [
         'canLogin' => Route::has('login'),
         'canRegister' => Route::has('register'),
         'laravelVersion' => Application::VERSION,
@@ -36,6 +36,12 @@ Route::middleware([
 });
 
 Route::get('/pdf',[PDFController::class,'pdf']);
+Route::get('/download/pdf1',[PDFController::class,'download1']);
+Route::get('/download/pdf2',[PDFController::class,'download2']);
+Route::get('/stream',[PDFController::class,'stream']);
+Route::get('/form',[PDFController::class,'registrationForm']);
+Route::post('/form/store',[PDFController::class,'store'])->name('form.create');
+Route::get('/show-summer-registration/{id}',[PDFController::class,'downloadForm']);
 
 
 
